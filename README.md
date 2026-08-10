@@ -4,8 +4,7 @@ This repository contains the MATLAB simulation for a distributed control archite
 
 ## 🛠️ Step-by-Step Configuration Guide
 
-To run the simulation, open `multiagents_cond.m`. At the very top of the script, you will find the **Main Control Panel** (`0. PANNELLO DI CONTROLLO PRINCIPALE`). 
-Change the variables in this section to create your custom scenario:
+To run the simulation, open `multiagents_cond.m`. At the very top of the script, you will find the **Main Control Panel** (`0. PANNELLO DI CONTROLLO PRINCIPALE`). Change the variables in this section to create your custom scenario:
 
 ### Step 1: Set the Network Topology (`STRUTTURA_RETE`)
 How should the robots communicate?
@@ -46,36 +45,33 @@ USE_NOISE = false;
 ```
 
 ### 🌪️ Recipe B: The "Static Failure"
-Keep the State-Feedback controller but introduce a constant wind. You will see the formation fail to track the target.
+Watch how the basic PD controller fails to maintain the formation when hit by a constant environmental disturbance (like wind).
 ```matlab
 STRUTTURA_RETE = 1;
 ACTIVATE_BOUNDS = true;
-STRATEGIA_CONTROLLO = 3; 
-SCENARIO_SIMULAZIONE = 2; % Constant wind added!
-USE_NOISE = true;
-```
-
-### 🛡️ Recipe C: The "Robust Final Boss"
-Activate the PID Loop-Shaping controller in the exact same windy conditions as Recipe B. Watch the integral action completely reject the wind and force the robots back onto the perfect track.
-```matlab
-STRUTTURA_RETE = 1;
-ACTIVATE_BOUNDS = true;
-STRATEGIA_CONTROLLO = 2;  % PID active!
-SCENARIO_SIMULAZIONE = 2; % Constant wind rejected
-USE_NOISE = true;
+STRATEGIA_CONTROLLO = 1; % PD Controller
+SCENARIO_SIMULAZIONE = 2; % Constant wind
+USE_NOISE = false;
 ```
 
 ---
 
-## 📈 What to expect after running
+## 🚀 Execution & Results
 
-Once you press **Run**, MATLAB will calculate the physics and automatically open:
-1. **XY Trajectory Plot:** A map showing the global movement of the fleet maintaining the triangular formation (ell = 2m).
-2. **Error Graphs:** Real-time plots of the tracking error and formation errors converging over time.
-3. **Control Efforts:** Graphs of the raw forces (Newtons) requested by the controllers.
-4. **Cinematic Animation:** A real-time, dark-themed 2D animation showing the robots physically converging, tracking the target, and leaving historical trails. *(Tip: You can change the playback speed by modifying the `speed_factor` variable at the bottom of the script).*
+Running the simulation is a two-step process. 
 
----
+### 1. Run the Main Simulation
+First, run the `multiagents_cond.m` script. When the computation is complete, the system will **automatically** do two things:
+
+1. **Command Window Output:** The numerical values of the final errors will be printed in the MATLAB console.
+2. **Static Plots:** Three figures will open to summarize the results. **Figure 1** shows the trajectories and spatial paths of the robots. **Figure 2** displays the tracking errors over time. **Figure 3** shows the physical control efforts $u = [u_x, u_y]$.
+
+### 2. Run the Animation
+The visual animation of the robots moving in formation **does NOT start automatically**. To view the actual dynamic behavior:
+
+1. Ensure the main simulation script has finished and the static figures are open.
+2. Open and run `animation.m`.
+3. A new figure will pop up showing the real-time movement of the robot fleet.
 
 *Developed by: Daniele Buson, Calogero Falco Abramo, Tommaso Franzoni, Alex Martinelli.*  
 *Final Project for the **Modeling and Control of Cyber-Physical Systems (CPSs)** course at **Politecnico di Torino**.*
