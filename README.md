@@ -73,5 +73,11 @@ The visual animation of the robots moving in formation **does NOT start automati
 2. Open and run `animation.m`.
 3. A new figure will pop up showing the real-time movement of the robot fleet.
 
-*Developed by: Daniele Buson, Calogero Falco Abramo, Tommaso Franzoni, Alex Martinelli.*  
-*Final Project for the **Modeling and Control of Cyber-Physical Systems (CPSs)** course at **Politecnico di Torino**.*
+
+## 🎓 Authors
+* **Buson Daniele**
+* **Falco Abramo Calogero**
+* **Franzoni Tommaso**
+* **Martinelli Alex**
+
+> *Final Project for the Modeling and Control of Cyber-Physical Systems (CPSs) course at Politecnico di Torino.*
